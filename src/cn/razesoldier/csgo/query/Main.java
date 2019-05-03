@@ -85,7 +85,7 @@ public class Main extends Application {
         task.setOnFailed((WorkerStateEvent event) -> {
             Exception e = (Exception)task.getException();
             if (e != null) {
-                box.setMsg(e.getLocalizedMessage());
+                box.setMsg(e.getClass().getTypeName() + ": " + e.getLocalizedMessage());
                 box.show();
             }
         });

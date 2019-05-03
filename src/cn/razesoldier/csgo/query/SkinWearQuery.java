@@ -22,7 +22,7 @@ public class SkinWearQuery {
         try {
             return JSON.parseObject(httpClient.GET("https://api.csgofloat.com/?url=" + runGameLink));
         } catch (HttpProcessException e) {
-            throw new RuntimeException(e.getLocalizedMessage());
+            throw new RuntimeException(e.getLocalizedMessage(), e);
         }
     }
 }
