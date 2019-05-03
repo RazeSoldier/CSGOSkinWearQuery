@@ -6,13 +6,13 @@
    <content>
       <AnchorPane prefHeight="398.0" prefWidth="598.0">
          <children>
-            <TableView fx:id="tableView" layoutX="33.0" layoutY="24.0" prefHeight="351.0" prefWidth="533.0" editable="true">
+            <TableView fx:id="tableView" editable="true" layoutX="33.0" layoutY="24.0" prefHeight="351.0" prefWidth="533.0">
               <columns>
                 <TableColumn fx:id="assetID" prefWidth="88.0" text="资产ID" />
-                <TableColumn fx:id="wear" prefWidth="108.0" text="磨损值" />
-                <TableColumn fx:id="price" prefWidth="91.0" text="价格" />
-                <TableColumn fx:id="pageNo" prefWidth="61.0" text="页数" />
-                <TableColumn fx:id="listingID" prefWidth="184.0" text="listingID"/>
+                <TableColumn fx:id="wear" prefWidth="96.0" text="磨损值" />
+                <TableColumn fx:id="price" prefWidth="76.0" text="价格" />
+                <TableColumn fx:id="pageNo" prefWidth="69.0" text="页数" />
+                <TableColumn fx:id="listingID" prefWidth="203.0" text="listingID" />
               </columns>
             </TableView>
          </children>

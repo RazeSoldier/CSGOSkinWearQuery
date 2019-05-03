@@ -70,7 +70,7 @@ public class ParseAction implements IAction {
                 if (node instanceof Element) {
                     String tagName = ((Element) node).getTagName();
                     if (tagName.equals("ListingID")) {
-                        listingID = node.getTextContent();
+                        listingID = "#listing_" + node.getTextContent();
                         continue;
                     }
                     if (tagName.equals("Wear")) {
@@ -163,7 +163,9 @@ public class ParseAction implements IAction {
                     case "price":
                         return Float.compare(Float.valueOf(a.getPrice()), Float.valueOf(b.getPrice()));
                     case "listingID":
-                        return Float.compare(Float.valueOf(a.getListingID()), Float.valueOf(b.getListingID()));
+                        Float f1 = Float.valueOf(a.getListingID().replaceAll("#listing_", ""));
+                        Float f2 = Float.valueOf(b.getListingID().replaceAll("#listing_", ""));
+                        return Float.compare(f1, f2);
                     case "pageNo":
                         return Integer.compare(a.getPageNo(), b.getPageNo());
                     default:
