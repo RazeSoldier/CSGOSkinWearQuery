@@ -70,10 +70,7 @@ public class QueryAction implements IAction {
         int loop = 0;
         for (Map.Entry<String, JSONObject> entry : assets.entrySet()) {
             loop++;
-            if (loop % 10 == 0) {
-                pageNo++;
-            }
-            JSONObject jsonValue = (JSONObject)entry.getValue();
+            JSONObject jsonValue = entry.getValue();
             String runGameLink = jsonValue.getJSONArray("actions").getJSONObject(0).getString("link");
             String listingID = getListingID(runGameLink);
             runGameLink = runGameLink.replaceAll("%assetid%", entry.getKey());
@@ -93,6 +90,9 @@ public class QueryAction implements IAction {
                 }
             }
             map.put(entry.getKey(), model);
+            if (loop % 10 == 0) {
+                pageNo++;
+            }
         }
 
         // 填充皮肤的价格属性
