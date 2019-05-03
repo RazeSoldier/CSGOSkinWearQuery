@@ -61,7 +61,7 @@ public class Main extends Application {
         AlertBox box = new AlertBox(Alert.AlertType.WARNING, "RuntimeException");
         Task<Boolean> task = new Task<Boolean>() {
             @Override
-            protected Boolean call() {
+            protected Boolean call() throws Exception {
                 updateValue(true);
                 updateMessage("查询中..");
                 action.exec();
@@ -100,10 +100,27 @@ public class Main extends Application {
     @FXML
     private void onParse() {
         IAction action = ActionFactory.make("parse", this);
+        defaultOn(action);
+    }
+
+    /**
+     * 当点击菜单里的“代理设置”时，执行此方法
+     */
+    @FXML
+    private void onSettingProxy() {
+        IAction action = ActionFactory.make("setting-proxy", this);
+        defaultOn(action);
+    }
+
+    /**
+     * 帮助方法，用于保存常见的事件处理逻辑
+     * @param action 来自事件处理器的IAction对象
+     */
+    private void defaultOn(IAction action) {
         try {
             action.exec();
-        } catch (RuntimeException e) {
-            AlertBox box = new AlertBox(Alert.AlertType.WARNING, "RuntimeException", e.getLocalizedMessage());
+        } catch (Exception e) {
+            AlertBox box = new AlertBox(Alert.AlertType.WARNING, "Exception", e.getLocalizedMessage());
             box.show();
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.razesoldier.csgo.query.Main">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.razesoldier.csgo.query.Main">
     <children>
         <GridPane alignment="CENTER" hgap="10.0" layoutX="97.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="223.0" prefWidth="407.0" vgap="10.0">
             <columnConstraints>
@@ -82,5 +82,11 @@
             </Label>
          </children>
       </GridPane>
+      <MenuButton layoutX="511.0" layoutY="354.0" mnemonicParsing="false">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#onSettingProxy" text="代理设置" />
+          <MenuItem mnemonicParsing="false" text="关于" />
+        </items>
+      </MenuButton>
     </children>
 </AnchorPane>
