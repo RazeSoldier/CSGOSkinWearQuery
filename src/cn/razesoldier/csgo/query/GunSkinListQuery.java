@@ -38,7 +38,13 @@ public class GunSkinListQuery {
         httpClient = new HttpClient(10, 1000, proxy);
     }
 
-    public Map<String, String> query() {
+    /**
+     * 执行查询
+     * @return 返回一个Map对象，包含两个元素：
+     *  "assets" => Map<String, Object>
+     *  "html" => String
+     */
+    public Map<String, Object> query() {
         try {
             String url;
             int startPos = 0;
