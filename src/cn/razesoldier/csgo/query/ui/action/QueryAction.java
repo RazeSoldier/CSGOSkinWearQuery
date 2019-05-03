@@ -1,9 +1,6 @@
 package cn.razesoldier.csgo.query.ui.action;
 
-import cn.razesoldier.csgo.query.GunSkinListQuery;
-import cn.razesoldier.csgo.query.Main;
-import cn.razesoldier.csgo.query.SkinNameMap;
-import cn.razesoldier.csgo.query.SkinWearQuery;
+import cn.razesoldier.csgo.query.*;
 import cn.razesoldier.csgo.query.model.SkinModel;
 import com.alibaba.fastjson.JSONObject;
 import org.jsoup.Jsoup;
@@ -46,8 +43,8 @@ public class QueryAction implements IAction {
         if (realName == null) {
             throw new RuntimeException("未在skinnamemap.txt里定义的名称");
         }
-        String proxy = this.app.proxy.getText();
-        if (!proxy.equals("")) {
+        String proxy = Config.getInstance().get("proxy");
+        if (proxy != null && !proxy.equals("")) {
             if (!proxy.matches("[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*:[0-9]*")) {
                 throw new RuntimeException("代理地址是非法的");
             }

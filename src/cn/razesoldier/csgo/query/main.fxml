@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
 <?import java.lang.*?>
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.razesoldier.csgo.query.Main">
     <children>
@@ -48,12 +48,6 @@
                         </FXCollections>
                     </items>
                 </ChoiceBox>
-            <Label text="代理" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="proxy" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             </children>
         </GridPane>
         <Button fx:id="queryButton" alignment="CENTER" layoutX="327.0" layoutY="287.0" mnemonicParsing="false" onAction="#onQuery" prefHeight="31.0" prefWidth="64.0" text="查询">

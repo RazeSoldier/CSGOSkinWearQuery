@@ -10,6 +10,9 @@ public class ActionFactory {
         if (key.equals("parse")) {
             return new ParseAction(main);
         }
+        if (key.equals("setting-proxy")) {
+            return new SettingProxyAction(main);
+        }
         throw new RuntimeException(key + " no found");
     }
 }

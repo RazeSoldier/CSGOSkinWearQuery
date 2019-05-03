@@ -30,7 +30,6 @@ public class Main extends Application {
     public TextField skinName;
     public Button queryButton;
     public Button parseButton;
-    public TextField proxy;
 
     private Stage primaryStage;
 
@@ -49,6 +48,7 @@ public class Main extends Application {
             // noinspection ResultOfMethodCallIgnored
             reportDir.mkdir();
         }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> Config.getInstance().syncFile()));
         launch(args);
     }
 
