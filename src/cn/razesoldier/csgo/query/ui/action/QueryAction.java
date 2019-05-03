@@ -64,11 +64,11 @@ public class QueryAction implements IAction {
         } else  {
             queryResult = new GunSkinListQuery(realName, this.app.wearLevel.getSelectionModel().getSelectedItem().toString()).query();
         }
+        @SuppressWarnings("unchecked") Map<String, JSONObject> assets = (Map<String, JSONObject>)queryResult.get("assets");
         // 遍历查询结果中的"assets"
-        JSONObject assets = JSONObject.parseObject(queryResult.get("assets").toString());
         int pageNo = 1;
         int loop = 0;
-        for (Map.Entry<String, Object> entry : assets.entrySet()) {
+        for (Map.Entry<String, JSONObject> entry : assets.entrySet()) {
             loop++;
             if (loop % 10 == 0) {
                 pageNo++;

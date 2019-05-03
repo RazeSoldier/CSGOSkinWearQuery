@@ -4,6 +4,7 @@ import cn.razesoldier.csgo.query.util.HttpClient;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 import com.arronlong.httpclientutil.exception.HttpProcessException;
 
 import java.net.URI;
@@ -42,8 +43,8 @@ public class GunSkinListQuery {
             String url;
             int startPos = 0;
             boolean end = false;
-            HashMap<String, String> result = new HashMap<>();
-            JSONObject assetsResult = new JSONObject();
+            HashMap<String, Object> result = new HashMap<>();
+            Map<String, Object> assetsResult = new JSONObject(true);
             StringBuilder htmlResult = new StringBuilder();
             do {
                 url = new URI("https", "//steamcommunity.com/market/listings/730/" + rawSkinName +
@@ -52,12 +53,13 @@ public class GunSkinListQuery {
                 if (jsonObj.get("assets").equals(new JSONArray())) {
                     end = true;
                 } else {
-                    assetsResult.putAll(jsonObj.getJSONObject("assets").getJSONObject("730").getJSONObject("2"));
+                    JSONObject assets = jsonObj.getJSONObject("assets").getJSONObject("730").getJSONObject("2");
+                    assetsResult.putAll(assets);
                     htmlResult.append(jsonObj.getString("results_html")).append("\n");
                     startPos += 100;
                 }
             } while (!end);
-            result.put("assets", assetsResult.toString());
+            result.put("assets", assetsResult);
             result.put("html", "<html><body>" + htmlResult.toString() + "</body></html>");
             return result;
         } catch (URISyntaxException e) {
@@ -76,6 +78,6 @@ public class GunSkinListQuery {
         } catch (HttpProcessException e) {
             throw new RuntimeException("拉取GunSkinList失败，堆栈跟踪：\n" + e.getLocalizedMessage());
         }
-        return JSON.parseObject(res);
+        return JSON.parseObject(res, Feature.OrderedField);
     }
 }
