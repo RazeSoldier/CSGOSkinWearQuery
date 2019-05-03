@@ -74,7 +74,30 @@ public class QueryAction implements IAction {
             String runGameLink = jsonValue.getJSONArray("actions").getJSONObject(0).getString("link");
             String listingID = getListingID(runGameLink);
             runGameLink = runGameLink.replaceAll("%assetid%", entry.getKey());
-            JSONObject wearQueryReport = new SkinWearQuery(runGameLink).query();
+
+            // 通过第三方API查询皮肤磨损值 @{
+            JSONObject wearQueryReport = null;
+            int retry = 0;
+            while (retry < 5) { // 5次重试的机会
+                try {
+                    wearQueryReport = new SkinWearQuery(runGameLink).query();
+                } catch (RuntimeException e) {
+                    continue;
+                }
+                if (wearQueryReport.getString("error") == null) {
+                    break;
+                }
+                retry++;
+            }
+            // @}
+
+            // 防止空指针出现
+            if (wearQueryReport.getString("error") != null) {
+                if (loop % 10 == 0) {
+                    pageNo++;
+                }
+                continue;
+            }
 
             SkinModel model = new SkinModel();
             model.setEnName(realName);
