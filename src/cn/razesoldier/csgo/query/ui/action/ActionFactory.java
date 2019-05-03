@@ -13,6 +13,9 @@ public class ActionFactory {
         if (key.equals("setting-proxy")) {
             return new SettingProxyAction(main);
         }
+        if (key.equals("show-about")) {
+            return new ShowAboutAction();
+        }
         throw new RuntimeException(key + " no found");
     }
 }

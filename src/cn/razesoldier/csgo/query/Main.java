@@ -113,6 +113,15 @@ public class Main extends Application {
     }
 
     /**
+     * 当点击菜单里的“关于”时，执行此方法
+     */
+    @FXML
+    private void onShowAbout() {
+        IAction action = ActionFactory.make("show-about", this);
+        defaultOn(action);
+    }
+
+    /**
      * 帮助方法，用于保存常见的事件处理逻辑
      * @param action 来自事件处理器的IAction对象
      */
